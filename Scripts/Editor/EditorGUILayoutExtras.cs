@@ -2,20 +2,18 @@
 using UnityEngine;
 using UnityEditor;
 
-
-
 namespace Extras
 {
     public static class EditorGUILayoutExtras
     {
-        public static void Horizontal(Action inner, params GUILayoutOption[] options)
+        public static void Horizontal(in Action inner, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginHorizontal(options);
             inner();
             EditorGUILayout.EndHorizontal();
         }
 
-        public static void Horizontal(Action inner, GUIStyle style, params GUILayoutOption[] options)
+        public static void Horizontal(in Action inner, in GUIStyle style, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginHorizontal(style, options);
             inner();
@@ -23,14 +21,14 @@ namespace Extras
         }
 
 
-        public static void Vertical(Action inner, params GUILayoutOption[] options)
+        public static void Vertical(in Action inner, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginVertical(options);
             inner();
             EditorGUILayout.EndVertical();
         }
 
-        public static void Vertical(Action inner, GUIStyle style, params GUILayoutOption[] options)
+        public static void Vertical(in Action inner, in GUIStyle style, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginVertical(style, options);
             inner();
@@ -38,37 +36,37 @@ namespace Extras
         }
 
 
-        public static void ScrollView(Action inner, Vector2 scrollPosition, params GUILayoutOption[] options)
+        public static void ScrollView(in Action inner, in Vector2 scrollPosition, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginScrollView(scrollPosition, options);
             inner();
             EditorGUILayout.EndScrollView();
         }
 
-        public static void ScrollView(Action inner, Vector2 scrollPosition, GUIStyle style, params GUILayoutOption[] options)
+        public static void ScrollView(in Action inner, in Vector2 scrollPosition, in GUIStyle style, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginScrollView(scrollPosition, style, options);
             inner();
             EditorGUILayout.EndScrollView();
         }
 
-        public static void ScrollView(Action inner, Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, params GUILayoutOption[] options)
+        public static void ScrollView(in Action inner, in Vector2 scrollPosition, in bool alwaysShowHorizontal, in bool alwaysShowVertical, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, options);
             inner();
             EditorGUILayout.EndScrollView();
         }
 
-        public static void ScrollView(Action inner, Vector2 scrollPosition, 
-            GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, params GUILayoutOption[] options)
+        public static void ScrollView(in Action inner, in Vector2 scrollPosition, 
+            in GUIStyle horizontalScrollbar, in GUIStyle verticalScrollbar, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginScrollView(scrollPosition, horizontalScrollbar, verticalScrollbar, options);
             inner();
             EditorGUILayout.EndScrollView();
         }
 
-        public static void ScrollView(Action inner, Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, 
-            GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, GUIStyle background, params GUILayoutOption[] options)
+        public static void ScrollView(in Action inner, in Vector2 scrollPosition, in bool alwaysShowHorizontal, in bool alwaysShowVertical,
+            in GUIStyle horizontalScrollbar, in GUIStyle verticalScrollbar, in GUIStyle background, params GUILayoutOption[] options)
         {
             EditorGUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, horizontalScrollbar, verticalScrollbar, background, options);
             inner();
@@ -76,15 +74,10 @@ namespace Extras
         }
 
 
-        public static Quaternion QuaternionField(GUIContent label, Quaternion value, params GUILayoutOption[] options)
-        {
-            var vector = EditorGUILayout.Vector4Field(label, new Vector4(value.x, value.y, value.z, value.w), options);
-            return new Quaternion(vector.x, vector.y, vector.z, vector.w);
-        }
+        public static Quaternion QuaternionField(in GUIContent label, in Quaternion value, params GUILayoutOption[] options) => 
+            EditorGUILayout.Vector4Field(label, value.ToVector4(), options).ToQuaternion();
 
-        public static Quaternion QuaternionField(string label, Quaternion value, params GUILayoutOption[] options)
-        {
-            return QuaternionField(new GUIContent(label), value, options);
-        }
+        public static Quaternion QuaternionField(in string label, in Quaternion value, params GUILayoutOption[] options) =>
+            QuaternionField(new GUIContent(label), value, options);
     }
 }

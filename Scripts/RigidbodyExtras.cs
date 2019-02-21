@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 
-
-
 namespace Extras
 {
     /// <summary>
     /// Allows you to serialize additional Rigidbody properties.
     /// </summary>
-    [AddComponentMenu("Extras/RigidbodyExtras")]
+    [AddComponentMenu(nameof(Extras) + "/" + nameof(RigidbodyExtras))]
     [RequireComponent(typeof(Rigidbody))]
     public class RigidbodyExtras : MonoBehaviour
     {
@@ -29,11 +27,7 @@ namespace Extras
 
         public Vector3 Velocity
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.velocity : _velocity;
-            }
-
+            get => Application.isPlaying ? _rigidbody.velocity : _velocity;
             set
             {
                 if (Application.isPlaying) _rigidbody.velocity = value;
@@ -43,11 +37,7 @@ namespace Extras
 
         public float MaxDepenetrationVelocity
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.maxDepenetrationVelocity : _maxDepenetrationVelocity;
-            }
-
+            get => Application.isPlaying ? _rigidbody.maxDepenetrationVelocity : _maxDepenetrationVelocity;
             set
             {
                 if (Application.isPlaying) _rigidbody.maxDepenetrationVelocity = value;
@@ -57,11 +47,7 @@ namespace Extras
 
         public Vector3 AngularVelocity
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.angularVelocity : _angularVelocity;
-            }
-
+            get => Application.isPlaying ? _rigidbody.angularVelocity : _angularVelocity;
             set
             {
                 if (Application.isPlaying) _rigidbody.angularVelocity = value;
@@ -71,11 +57,7 @@ namespace Extras
 
         public float MaxAngularVelocity
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.maxAngularVelocity : _maxAngularVelocity;
-            }
-
+            get => Application.isPlaying ? _rigidbody.maxAngularVelocity : _maxAngularVelocity;
             set
             {
                 if (value >= 0)
@@ -88,11 +70,7 @@ namespace Extras
 
         public float SleepThreshold
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.sleepThreshold : _sleepThreshold;
-            }
-
+            get => Application.isPlaying ? _rigidbody.sleepThreshold : _sleepThreshold;
             set
             {
                 if (Application.isPlaying) _rigidbody.sleepThreshold = value;
@@ -102,11 +80,7 @@ namespace Extras
 
         public bool DetectCollisions
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.detectCollisions : _detectCollisions;
-            }
-
+            get => Application.isPlaying ? _rigidbody.detectCollisions : _detectCollisions;
             set
             {
                 if (Application.isPlaying) _rigidbody.detectCollisions = value;
@@ -116,24 +90,13 @@ namespace Extras
 
         public bool SetCentreOfMass
         {
-            get
-            {
-                return _setCentreOfMass;
-            }
-
-            set
-            {
-                _setCentreOfMass = value;
-            }
+            get => _setCentreOfMass;
+            set => _setCentreOfMass = value;
         }
 
         public Vector3 CentreOfMass
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.centerOfMass : _centreOfMass;
-            }
-
+            get => Application.isPlaying ? _rigidbody.centerOfMass : _centreOfMass;
             set
             {
                 if (Application.isPlaying) _rigidbody.centerOfMass = value;
@@ -143,24 +106,13 @@ namespace Extras
 
         public bool SetInertiaTensor
         {
-            get
-            {
-                return _setInertiaTensor;
-            }
-
-            set
-            {
-                _setInertiaTensor = value;
-            }
+            get => _setInertiaTensor;
+            set => _setInertiaTensor = value;
         }
 
         public Vector3 InertiaTensor
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.inertiaTensor : _inertaTensor;
-            }
-
+            get => Application.isPlaying ? _rigidbody.inertiaTensor : _inertaTensor;
             set
             {
                 if (value.x > 0f && value.y > 0f && value.z > 0f)
@@ -173,24 +125,13 @@ namespace Extras
 
         public bool SetSolverIterations
         {
-            get
-            {
-                return _setSolverIterations;
-            }
-
-            set
-            {
-                _setSolverIterations = value;
-            }
+            get => _setSolverIterations;
+            set => _setSolverIterations = value;
         }
 
         public int SolverIterations
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.solverIterations : _solverIterations;
-            }
-
+            get => Application.isPlaying ? _rigidbody.solverIterations : _solverIterations;
             set
             {
                 if (value > 0)
@@ -203,24 +144,13 @@ namespace Extras
 
         public bool SetSolverVelocityIterations
         {
-            get
-            {
-                return _setSolverVelocityIterations;
-            }
-
-            set
-            {
-                _setSolverVelocityIterations = value;
-            }
+            get => _setSolverVelocityIterations;
+            set => _setSolverVelocityIterations = value;
         }
 
         public int SolverVelocityIterations
         {
-            get
-            {
-                return Application.isPlaying ? _rigidbody.solverVelocityIterations : _solverVelocityIterations;
-            }
-
+            get => Application.isPlaying ? _rigidbody.solverVelocityIterations : _solverVelocityIterations;
             set
             {
                 if (value > 0)

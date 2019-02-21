@@ -6,6 +6,17 @@ namespace Extras
     [RequireComponent(typeof(Collider))]
     public class CollisionSelfDestruct : MonoBehaviour
     {
-        void OnCollisionEnter() { if (enabled) Destroy(gameObject); }
+#pragma warning disable 649
+        [SerializeField] GameObjectPool _pool;
+#pragma warning restore 649
+
+        void OnCollisionEnter()
+        {
+            if (enabled)
+            {
+                if (_pool) _pool.ReturnInstance(gameObject);
+                else Destroy(gameObject);
+            }
+        }
     } 
 }

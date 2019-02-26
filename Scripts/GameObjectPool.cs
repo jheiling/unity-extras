@@ -25,10 +25,15 @@ namespace Extras
 
         public GameObject GetInstance(in Vector3 position, in Quaternion rotation)
         {
-            var instance = GetInstance();
-            instance.transform.position = position;
-            instance.transform.rotation = rotation;
-            return instance;
+            if (_pooled.Count > 0)
+            {
+                var instance = _pooled.Dequeue();
+                instance.transform.position = position;
+                instance.transform.rotation = rotation;
+                instance.SetActive(true);
+                return instance;
+            }
+            else return Instantiate(_prefab, position, rotation);
         }
 
         public void ReturnInstance(in GameObject instance)

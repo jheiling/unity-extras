@@ -10,6 +10,8 @@ namespace Extras
         [SerializeField] GameObjectPool _pool;
 #pragma warning restore 649
 
+        void OnEnable() { } // forces enabled checkbox in editor
+
         void OnCollisionEnter()
         {
             if (enabled)
